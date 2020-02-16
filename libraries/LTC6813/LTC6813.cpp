@@ -1,13 +1,13 @@
 /*! LTC6813: Multicell Battery Monitors
 *
 *@verbatim
-*The LTC6813 is multi-cell battery stack monitor that measures up to 18 series 
-*connected battery cells with a total measurement error of less than 2.2mV. 
-*The cell measurement range of 0V to 5V makes the LTC6813 suitable for most 
-*battery chemistries. All 18 cell voltages can be captured in 290uS, and lower 
+*The LTC6813 is multi-cell battery stack monitor that measures up to 18 series
+*connected battery cells with a total measurement error of less than 2.2mV.
+*The cell measurement range of 0V to 5V makes the LTC6813 suitable for most
+*battery chemistries. All 18 cell voltages can be captured in 290uS, and lower
 *data acquisition rates can be selected for high noise reduction.
-*Using the LTC6813-1, multiple devices are connected in a daisy-chain with one 
-*host processor connection for all devices, permitting simultaneous cell monitoring 
+*Using the LTC6813-1, multiple devices are connected in a daisy-chain with one
+*host processor connection for all devices, permitting simultaneous cell monitoring
 *of long, high voltage battery strings.
 *@endverbatim
 *
@@ -443,6 +443,7 @@ void LTC6813_set_custom_discharge(int Cell,			  //!< The cell to be discharged
 								  cell_asic *ic		  //!< A two dimensional array that will store the data
 )
 {
+	current_ic = total_ic - current_ic - 1;
 	if (Cell == 0)
 	{
 		ic[current_ic].configb.tx_data[1] = ic[current_ic].configb.tx_data[1] | (0x04);
@@ -533,8 +534,8 @@ int8_t LTC6813_rdsctrl(uint8_t total_ic,  // number of ICs in the daisy chain
 	LTC681x_rdsctrl(total_ic, sctrl_reg, ic);
 }
 
-/* 
-Start Sctrl data communication        
+/*
+Start Sctrl data communication
 This command will start the sctrl pulse communication over the spins
 */
 void LTC6813_stsctrl()

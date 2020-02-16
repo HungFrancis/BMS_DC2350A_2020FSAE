@@ -1,7 +1,7 @@
 /*! General BMS Library
 ***************************************************************************/
 /**
-*   @file     LTC681x.cpp  
+*   @file     LTC681x.cpp
 *   @author BMS (bms.support@analog.com)
 
 ********************************************************************************
@@ -92,8 +92,8 @@ void cmd_68(uint8_t tx_cmd[2]) //The command to be transmitted
 	cs_high(CS_PIN);
 }
 
-/* 
-Generic function to write 68xx commands and write payload data. 
+/*
+Generic function to write 68xx commands and write payload data.
 Function calculates PEC for tx_cmd data and the data to be transmitted.
  */
 void write_68(uint8_t total_ic,  //Number of ICs to be written to
@@ -432,8 +432,8 @@ void LTC681x_adcvax(uint8_t MD, //ADC Mode
 
 /*
 Reads and parses the LTC681x cell voltage registers.
-The function is used to read the parsed Cell voltages codes of the LTC681x. 
-This function will send the requested read commands parse the data 
+The function is used to read the parsed Cell voltages codes of the LTC681x.
+This function will send the requested read commands parse the data
 and store the cell voltages in c_codes variable.
 */
 uint8_t LTC681x_rdcv(uint8_t reg,	  // Controls which cell voltage register is read back.
@@ -494,8 +494,8 @@ uint8_t LTC681x_rdcv(uint8_t reg,	  // Controls which cell voltage register is r
 }
 
 /*
-The function is used to read the  parsed GPIO codes of the LTC681x. 
-This function will send the requested read commands parse the data 
+The function is used to read the  parsed GPIO codes of the LTC681x.
+This function will send the requested read commands parse the data
 and store the gpio voltages in a_codes variable.
 */
 int8_t LTC681x_rdaux(uint8_t reg,	  //Determines which GPIO voltage register is read back.
@@ -556,8 +556,8 @@ int8_t LTC681x_rdaux(uint8_t reg,	  //Determines which GPIO voltage register is 
 
 /*
 Reads and parses the LTC681x stat registers.
-The function is used to read the  parsed Stat codes of the LTC681x. 
-This function will send the requested read commands parse the data 
+The function is used to read the  parsed Stat codes of the LTC681x.
+This function will send the requested read commands parse the data
 and store the gpio voltages in stat_codes variable.
 */
 int8_t LTC681x_rdstat(uint8_t reg,		//Determines which Stat  register is read back.
@@ -1766,7 +1766,7 @@ void LTC681x_clear_custom2_discharge(int Cell,			 //!< The cell to be discharged
 									 cell_asic *ic		 // A two dimensional array that will store the data
 )
 {
-
+	current_ic = total_ic - current_ic - 1;
 	switch (Cell)
 	{
 	case 1:
@@ -2018,8 +2018,8 @@ int8_t LTC681x_rdsctrl(uint8_t total_ic,  // Number of ICs in the daisy chain
 	return (pec_error);
 }
 
-/* 
-Start Sctrl data communication       
+/*
+Start Sctrl data communication
 This command will start the sctrl pulse communication over the spins
 */
 void LTC681x_stsctrl()
