@@ -65,7 +65,7 @@
 
 /* Helper function to initialize register limits. */
 void LTC6813_init_reg_limits(uint8_t total_ic, //Number of ICs in the system
-							 cell_asic *ic	 // A two dimensional array that will store the data
+							 cell_asic *ic	   // A two dimensional array that will store the data
 )
 {
 	for (uint8_t cic = 0; cic < total_ic; cic++)
@@ -97,7 +97,7 @@ connected in a daisy chain stack. The configuration is written in descending
 order so the last device's configuration is written first.
 */
 void LTC6813_wrcfgb(uint8_t total_ic, //The number of ICs being written to
-					cell_asic *ic	 //A two dimensional array of the configuration data that will be written
+					cell_asic *ic	  //A two dimensional array of the configuration data that will be written
 )
 {
 	LTC681x_wrcfgb(total_ic, ic);
@@ -105,7 +105,7 @@ void LTC6813_wrcfgb(uint8_t total_ic, //The number of ICs being written to
 
 /* Reads configuration registers of a LTC6813 daisy chain */
 int8_t LTC6813_rdcfg(uint8_t total_ic, //Number of ICs in the system
-					 cell_asic *ic	 //A two dimensional array that the function stores the read configuration data.
+					 cell_asic *ic	   //A two dimensional array that the function stores the read configuration data.
 )
 {
 	int8_t pec_error = 0;
@@ -141,7 +141,7 @@ void LTC6813_adax(uint8_t MD, //ADC Mode
 }
 
 /* Start a Status ADC Conversion */
-void LTC6813_adstat(uint8_t MD,  //ADC Mode
+void LTC6813_adstat(uint8_t MD,	 //ADC Mode
 					uint8_t CHST //Stat Channels to be measured
 )
 {
@@ -165,9 +165,9 @@ void LTC6813_adcvsc(uint8_t MD, //ADC Mode
 }
 
 /*  Reads and parses the LTC6813 cell voltage registers */
-uint8_t LTC6813_rdcv(uint8_t reg,	  // Controls which cell voltage register is read back.
+uint8_t LTC6813_rdcv(uint8_t reg,	   // Controls which cell voltage register is read back.
 					 uint8_t total_ic, // The number of ICs in the system
-					 cell_asic *ic	 // Array of the parsed cell codes
+					 cell_asic *ic	   // Array of the parsed cell codes
 )
 {
 	int8_t pec_error = 0;
@@ -180,9 +180,9 @@ The function is used
 to read the  parsed GPIO codes of the LTC6813. This function will send the requested
 read commands parse the data and store the gpio voltages in aux_codes variable
 */
-int8_t LTC6813_rdaux(uint8_t reg,	  //Determines which GPIO voltage register is read back.
+int8_t LTC6813_rdaux(uint8_t reg,	   //Determines which GPIO voltage register is read back.
 					 uint8_t total_ic, //The number of ICs in the system
-					 cell_asic *ic	 //A two dimensional array of the gpio voltage codes.
+					 cell_asic *ic	   //A two dimensional array of the gpio voltage codes.
 )
 {
 	int8_t pec_error = 0;
@@ -272,7 +272,7 @@ void LTC6813_axst(uint8_t MD, //ADC Mode
 
 /* Start a Status Register Self Test Conversion */
 void LTC6813_statst(uint8_t MD, //ADC Mode
-					uint8_t ST  //Self Test
+					uint8_t ST	//Self Test
 )
 {
 	LTC681x_statst(MD, ST);
@@ -305,7 +305,7 @@ void LTC6813_adstatd(uint8_t MD,  //ADC Mode
 /* Runs the Digital Filter Self Test */
 int16_t LTC6813_run_cell_adc_st(uint8_t adc_reg,  // Type of register
 								uint8_t total_ic, // Number of ICs in the system
-								cell_asic *ic,	// A two dimensional array that will store the data
+								cell_asic *ic,	  // A two dimensional array that will store the data
 								uint8_t md,		  //ADC Mode
 								bool adcopt		  // The adcopt bit in the configuration register
 )
@@ -317,7 +317,7 @@ int16_t LTC6813_run_cell_adc_st(uint8_t adc_reg,  // Type of register
 
 /*  Runs the ADC overlap test for the IC */
 uint16_t LTC6813_run_adc_overlap(uint8_t total_ic, // Number of ICs in the system
-								 cell_asic *ic	 // A two dimensional array that will store the data
+								 cell_asic *ic	   // A two dimensional array that will store the data
 )
 {
 	uint16_t error = 0;
@@ -350,7 +350,7 @@ uint16_t LTC6813_run_adc_overlap(uint8_t total_ic, // Number of ICs in the syste
 
 /* Runs the redundancy self test */
 int16_t LTC6813_run_adc_redundancy_st(uint8_t adc_mode, //ADC Mode
-									  uint8_t adc_reg,  // Type of register
+									  uint8_t adc_reg,	// Type of register
 									  uint8_t total_ic, // Number of ICs in the system
 									  cell_asic *ic		// A two dimensional array that will store the data
 )
@@ -380,7 +380,7 @@ void LTC6813_axow(uint8_t MD, //ADC Mode
 
 /* Runs the data sheet algorithm for open wire for single cell detection */
 void LTC6813_run_openwire_single(uint8_t total_ic, // Number of ICs in the system
-								 cell_asic *ic	 // A two dimensional array that will store the data
+								 cell_asic *ic	   // A two dimensional array that will store the data
 )
 {
 	LTC681x_run_openwire_single(total_ic, ic);
@@ -388,7 +388,7 @@ void LTC6813_run_openwire_single(uint8_t total_ic, // Number of ICs in the syste
 
 /* Runs the data sheet algorithm for open wire for multiple cell and two consecutive cells detection */
 void LTC6813_run_openwire_multi(uint8_t total_ic, // Number of ICs in the system
-								cell_asic *ic	 // A two dimensional array that will store the data
+								cell_asic *ic	  // A two dimensional array that will store the data
 )
 {
 	LTC681x_run_openwire_multi(total_ic, ic);
@@ -439,11 +439,11 @@ void LTC6813_set_discharge(int Cell,		 // Cell to be discharged
 
 void LTC6813_set_custom_discharge(int Cell,			  //!< The cell to be discharged
 								  uint8_t current_ic, //selected IC in the system
-								  uint8_t total_ic,   //!< Number of ICs in the system
+								  uint8_t total_ic,	  //!< Number of ICs in the system
 								  cell_asic *ic		  //!< A two dimensional array that will store the data
 )
 {
-	current_ic = total_ic - current_ic - 1;
+	current_ic = total_ic - current_ic - 1; //Reverse the Num of IC
 	if (Cell == 0)
 	{
 		ic[current_ic].configb.tx_data[1] = ic[current_ic].configb.tx_data[1] | (0x04);
@@ -472,7 +472,7 @@ void LTC6813_set_custom_discharge(int Cell,			  //!< The cell to be discharged
 
 /* Clears all of the DCC bits in the configuration registers */
 void LTC6813_clear_discharge(uint8_t total_ic, // Number of ICs in the system
-							 cell_asic *ic	 // A two dimensional array that will store the data
+							 cell_asic *ic	   // A two dimensional array that will store the data
 )
 {
 	LTC681x_clear_discharge(total_ic, ic);
@@ -481,7 +481,7 @@ void LTC6813_clear_discharge(uint8_t total_ic, // Number of ICs in the system
 /* Clears one of the DCC bits in the configuration registers */
 void LTC6813_clear_custom_discharge(int Cell,		  //!< The cell to be discharged
 									uint8_t total_ic, // Number of ICs in the system
-									cell_asic *ic	 // A two dimensional array that will store the data
+									cell_asic *ic	  // A two dimensional array that will store the data
 )
 {
 	LTC681x_clear_custom_discharge(Cell, total_ic, ic);
@@ -489,7 +489,7 @@ void LTC6813_clear_custom_discharge(int Cell,		  //!< The cell to be discharged
 
 void LTC6813_clear_custom2_discharge(int Cell,			 //!< The cell to be discharged
 									 uint8_t current_ic, //!< selected IC in the system
-									 uint8_t total_ic,   // Number of ICs in the system
+									 uint8_t total_ic,	 // Number of ICs in the system
 									 cell_asic *ic		 // A two dimensional array that will store the data
 )
 {
@@ -498,7 +498,7 @@ void LTC6813_clear_custom2_discharge(int Cell,			 //!< The cell to be discharged
 
 /* Writes the pwm registers of a LTC6813 daisy chain  */
 void LTC6813_wrpwm(uint8_t total_ic, // Number of ICs in the system
-				   uint8_t pwmReg,   // PWM Register A or B
+				   uint8_t pwmReg,	 // PWM Register A or B
 				   cell_asic *ic	 //A two dimensional array of the configuration data that will be written
 )
 {
@@ -508,7 +508,7 @@ void LTC6813_wrpwm(uint8_t total_ic, // Number of ICs in the system
 /* Reads pwm registers of a LTC6813 daisy chain */
 int8_t LTC6813_rdpwm(uint8_t total_ic, //Number of ICs in the system
 					 uint8_t pwmReg,   // PWM Register A or B
-					 cell_asic *ic	 //A two dimensional array that the function stores the read configuration data.
+					 cell_asic *ic	   //A two dimensional array that the function stores the read configuration data.
 )
 {
 	int8_t pec_error = 0;
@@ -517,7 +517,7 @@ int8_t LTC6813_rdpwm(uint8_t total_ic, //Number of ICs in the system
 }
 
 /* Writes data in S control register the ltc6813-1  connected in a daisy chain stack */
-void LTC6813_wrsctrl(uint8_t total_ic,  // number of ICs in the daisy chain
+void LTC6813_wrsctrl(uint8_t total_ic,	// number of ICs in the daisy chain
 					 uint8_t sctrl_reg, // SCTRL Register A or B
 					 cell_asic *ic		// A two dimensional array that will store the data
 )
@@ -644,7 +644,7 @@ uint8_t LTC6813_rdpsb(uint8_t total_ic, //< number of ICs in the daisy chain
 
 /* Writes the COMM registers of a LTC6813 daisy chain */
 void LTC6813_wrcomm(uint8_t total_ic, //The number of ICs being written to
-					cell_asic *ic	 //A two dimensional array of the comm data that will be written
+					cell_asic *ic	  //A two dimensional array of the comm data that will be written
 )
 {
 	LTC681x_wrcomm(total_ic, ic);
@@ -697,7 +697,7 @@ void LTC6813_check_pec(uint8_t total_ic, //Number of ICs in the system
 
 /* Helper Function to reset PEC counters */
 void LTC6813_reset_crc_count(uint8_t total_ic, //Number of ICs in the system
-							 cell_asic *ic	 // A two dimensional array that will store the data
+							 cell_asic *ic	   // A two dimensional array that will store the data
 )
 {
 	LTC681x_reset_crc_count(total_ic, ic);
